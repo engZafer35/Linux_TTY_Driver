@@ -176,26 +176,7 @@ static void ztty_close(struct tty_struct *tty, struct file *filp)
 static int ztty_write(struct tty_struct *tty,
         const unsigned char *buf, int count)
 {
-    struct tty_port *port = tty->port;
-   // struct tty_struct *to = tty->link;
-/*
-    if (tty->stopped)
-    {
-        pr_debug("Z-TTY: ztty_write stopped !!\n");
-        return 0;
-    }
-*/
-    pr_debug("Z-TTY: write -------\n");
-
-    if (count > 0)
-    {
-        count = tty_insert_flip_string(port, buf, count); // &ztty_port.port
-        if (count)
-            tty_flip_buffer_push(port);
-    }
-
-    return count;
-//    return _print(buf, count);
+    return _print(buf, count);
 }
 /** TTY operations write_room function. */
 static int ztty_write_room(struct tty_struct *tty)
